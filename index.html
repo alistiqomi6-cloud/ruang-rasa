@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ruang-rasa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <header class="navbar">
+        <a href="#homepage" class="brand">
+            <span class="brand-icon">R.</span>
+            <span class="brand-name">Ruang Rasa</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#homepage">Homepage</a>
+            <a href="#mood-history">Mood History</a>
+            <a href="#journal">Journal</a>
+            <a href="#mood-check">Mood Check</a>
+            <a href="#write-journal">Write Journal</a>
+            <a href="#ruang-tenang">Ruang Tenang</a>
+            <a href="#edukasi">Edukasi</a>
+        </nav>
+        <button class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    </header>
+    <main class="main-content">
+        <section id="homepage" class="homepage-section">
+            <div class="oi">
+                <img src="" alt="">
+                <h1>RUANG RASA</h1>
+                <p>Your Feelings Matter, Your Mind Matters</p>
+            </div>
+        </section>
+        <section id="mood-history" class="page-section">
+            <h2>MOOD HISTORY</h2>
+            <p class="bv">Perjalanan  suasana hatimu selama 30 hari terakhir</p>
+            <div id="moodHistoryList" class="content-panel">
+                <p>Belum ada catatan suasana hati</p>
+            </div>
+        </section>
+        <section id="journal" class="page-section">
+            <div class="section-heading">
+                <h2>My Journal</h2>
+                <p>Every feeling deserves a place to be heard</p>
+            </div>
+            <div id="latestJournal" class="journal-list"></div>
+        </section>
+        <section class="mood-check">
+            <div class="moi">
+                <h2>Mood Check</h2>
+            </div>
+            <div class="mood-options">
+                <button type="button" data-mood="Senang">😊 Senang</button>
+                <button type="button" data-mood="Tenang">😌 Tenang</button>
+                <button type="button" data-mood="Sedih">😔 Sedih</button>
+                <button type="button" data-mood="Cemas">😟 Cemas</button>
+                <button type="button" data-mood="Marah">😠 Marah</button>
+                <button type="button" data-mood="Lelah">😮‍💨 Lelah</button>
+            </div>
+            <p id="moodFeedback" aria-live="polite">
+                Pilih suasana hatimu terlebih dahulu.
+            </p>
+            <button type="button" id="saveMoodButton">
+                Simpan
+            </button>
+        </section>
+        <section id="write-journal" class="feature-scene">
+            <div class="journal-editor">
+                <h2>Write Your Journal</h2>
+                <p>Tuangkan apa yang sedang kamu rasakan</p>
+                <form id="journalForm">
+                    <textarea id="journalInput" placeholder="tulislah isi hatimu..." required></textarea>
+                    <button type="submit">Save</button>
+                </form>
+                <p id="journalfeedback"></p>
+            </div>
+        </section>
+        <section id="ruang-tenang" class="page-section">
+            <div class="section-heading">
+                <h2>Ruang Tenang</h2>
+                <p>Take a deep breath. You deserve a moment of peace</p>
+            </div>
+            <div class="calm-container">
+                <div class="calm-intro">
+                    <span class="calm-label">YOUR PERSONAL SPACE</span>
+                    <p>Tidak semua hal harus diselesaikan hari ini.
+                       Berikan dirimu waktu untuk beristirahat.</p>
+                </div>
+                <div class="breathing-card">
+                    <span class="breathing-label">BREATHING EXERCISE</span>
+                    <h3>Atur Napasmu</h3>
+                    <p class="breathing-description">
+                        Ikuti gerakan lingkaran dan bernapaslah secara perlahan
+                    </p>
+                    <div class="breathing-circle" id="breathingCircle">
+                        <div class="breathing-inner">
+                            <span id="breathingText">Ready?</span>
+                        </div>
+                    </div>
+                    <p id="breathingInstruction">Siap untuk memulai?</p>
+                    <button id="breathingButton" type="button">Mulai</button>
+                </div>
+            </div>
+        </section>
+        <section id="edukasi" class="page-section">
+            <div class="section-heading">
+                <h2>Ruang Belajar</h2>
+                <p>
+                    Understand your emotions, understand yourself.
+                </p>
+            </div>
+            <div class="education-intro">
+                <span>LEARN ABOUT YOURSELF</span>
+                <h3>Memahami diri adalah sebuah perjalanan.</h3>
+                <p>
+                    Kenali perasaanmu, pahami apa yang terjadi,
+                    dan temukan cara untuk merawat dirimu sendiri.
+                </p>
+            </div>
+            <div class="education-grid">
+                <article class="education-card">
+                    <div class="education-number">01</div>
+                    <span class="education-category">EMOTIONAL AWARENESS</span>
+                    <h3>Mengenal Emosi</h3>
+                    <p>
+                        Memahami berbagai jenis emosi dan alasan
+                        mengapa kita dapat merasakannya.
+                    </p>
+                    <button class="education-button"
+                        data-education="emotions">
+                        Pelajari →
+                    </button>
+                </article>
+                <article class="education-card">
+                    <div class="education-number">02</div>
+                    <span class="education-category">EMOTIONAL SKILLS</span>
+                    <h3>Mengelola Emosi</h3>
+                    <p>
+                        Belajar menghadapi perasaan tanpa harus
+                        mengabaikan atau memendamnya.
+                    </p>
+                    <button class="education-button"
+                        data-education="management">
+                        Pelajari →
+                    </button>
+                </article>
+                <article class="education-card">
+                    <div class="education-number">03</div>
+                    <span class="education-category">SELF AWARENESS</span>
+                    <h3>Mengenal Diri</h3>
+                    <p>
+                        Mengenali pikiran, perasaan, kebutuhan,
+                        dan hal-hal yang berarti bagi dirimu.
+                    </p>
+                    <button class="education-button"
+                        data-education="awareness">
+                        Pelajari →
+                    </button>
+                </article>
+                <article class="education-card">
+                    <div class="education-number">04</div>
+                    <span class="education-category">SELF COMPASSION</span>
+                    <h3>Menyayangi Diri</h3>
+                    <p>
+                        Belajar menerima kekurangan dan
+                        memperlakukan diri dengan lebih baik.
+                    </p>
+                    <button class="education-button"
+                        data-education="compassion">
+                        Pelajari →
+                    </button>
+                </article>
+            </div>
+            <!-- TEMPAT DETAIL MATERI -->
+            <div id="educationDetail" class="education-detail"
+                aria-live="polite" hidden>
+                <button id="closeEducation" type="button">
+                    ✕ Tutup Materi
+                </button>
+                <span id="educationCategory"></span>
+                <h3 id="educationTitle"></h3>
+                <div id="educationContent"></div>
+            </div>
+        </section>
+    </main>
+    <script src="app.js" defer></script>
+</body>
+</html>
