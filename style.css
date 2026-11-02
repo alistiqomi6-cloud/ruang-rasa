@@ -95,6 +95,69 @@ body{
     font-family: "britney";
     src: url(fonts/Britney-Variable.ttf);
 }
+.loader{
+    position:fixed;
+    inset:0;
+    z-index:99;
+    background:radial-gradient(
+            ellipse at 20% 20%,
+            rgba(146, 113, 194, 0.28),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 80% 30%,
+            rgba(73, 48, 109, 0.35),
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse at 50% 90%,
+            rgba(196, 154, 207, 0.15),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #0B0715 0%,
+            #160D27 35%,
+            #281642 70%,
+            #0B0715 100%
+        );
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:1s ease;
+}
+.loader.loaded{
+    opacity:0;
+    visibility:hidden;
+}
+.loader-content{
+    width:250px;
+    text-align:center;
+}
+.loader-text{
+    color:white;
+    font-family:"Chillax",sans-serif;
+    font-weight:800;
+    font-size:30px;
+}
+.loader-bar{
+    width:100%;
+    height:4px;
+    background:gray;
+    overflow:hidden;
+}
+.loader-bar span{
+    display:block;
+    width:0%;
+    height:100%;
+    background:white;
+}
+.loader-number{
+    color:white;
+    font-family:"Chillax",sans-serif;
+    font-weight:800;
+    font-size:20px;
+}
 #homepage {
     height: 70vh;
     text-align:center;
@@ -124,7 +187,13 @@ body{
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    z-index: 1000;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+}
+.navbar.show {
+    opacity: 1;
+    visibility: visible;
 }
 /* BRAND */
 .brand {

@@ -87,6 +87,20 @@ window.addEventListener("resize",function(){
     resizeParticleCanvas();
     createParticles();
 });
+const loader=document.querySelector(".loader");
+const loaderNumber=document.querySelector(".loader-number");
+const loaderBar=document.querySelector(".loader-bar span");
+let progress=0;
+const loading=setInterval(()=>{
+    progress++;
+    loaderBar.style.width=progress+"%";
+    loaderNumber.textContent=progress+"%";
+    if(progress>=100){
+        clearInterval(loading);
+        loader.classList.add("loaded");
+        document.querySelector(".navbar").classList.add("show");
+    }
+}, 50);
 
 const moodButtons=document.querySelectorAll("[data-mood]");
 const saveMoodButton=document.querySelector("#saveMoodButton");

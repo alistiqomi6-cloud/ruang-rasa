@@ -8,12 +8,21 @@
 </head>
 <body>
     <canvas id="particleCanvas"></canvas>
+    <div class="loader">
+       <div class="loader-content">
+          <p class="loader-text">LOADING</p>
+          <div class="loader-bar">
+            <span></span>
+          </div>
+          <p class="loader-number">0%</p>
+       </div>
+    </div>
     <header class="navbar">
         <a href="#homepage" class="brand">
             <span class="brand-icon">R.</span>
             <span class="brand-name">Ruang Rasa</span>
         </a>
-        <nav class="nav-links">
+        <nav class="nav-links" id="navLinks">
             <a href="#homepage">Homepage</a>
             <a href="#mood-history">Mood History</a>
             <a href="#journal">Journal</a>
@@ -55,7 +64,7 @@
             </div>
             <div id="latestJournal" class="journal-list"></div>
         </section>
-        <section class="mood-check">
+        <section class="mood-check" id="mood-check">
             <div class="moi">
                 <h2>Mood Check</h2>
             </div>
