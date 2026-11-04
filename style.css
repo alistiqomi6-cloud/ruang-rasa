@@ -159,12 +159,11 @@ body{
     font-size:20px;
 }
 #homepage {
-    height: 70vh;
     text-align:center;
     display: flex;
     justify-content:center;
     align-items: center;
-    padding-top:130px;
+    padding-top:180px;
     padding-bottom: 200px;
 }
 .navbar {
@@ -354,6 +353,7 @@ body{
     font-size:20px;
 }
 #mood-history{
+    padding:130px;
     border-radius:30px;
     text-align:center;
     height:90vh;
@@ -1043,4 +1043,8 @@ body{
     .education-detail {
         padding: 23px;
     }
+}
+.education-card a{
+    text-decoration: none;
+    color:#D5C9E2;
 }

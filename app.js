@@ -510,6 +510,26 @@ const educationMaterials = {
             <p><strong>4. Berikan waktu untuk beristirahat.</strong>
             Kebutuhan untuk beristirahat juga penting.</p>
         `
+    },
+    mentalHealth: {
+        category: "MENTAL HEALTH",
+        title: "Kesehatan Mental",
+        content:`
+        <p>
+            Kesehatan mental adalah kondisi emosional, psikologis, dan sosial yang memengaruhi cara kita berpikir, merasa, dan bertindak. Memiliki kesehatan mental yang baik penting untuk hidup yang seimbang dan berkualitas.
+        </p>
+        <h4>Cara Menjaga Kesehatan Mental</h4>
+        <p><strong>1. Tetap aktif secara fisik.</strong>
+        Olahraga dapat membantu mengurangi stres dan meningkatkan suasana hati.</p>
+        <p><strong>2. Jaga pola tidur yang baik.</strong>
+        Tidur yang cukup membantu tubuh dan pikiran pulih.</p>
+        <p><strong>3. Bangun hubungan sosial yang positif.</strong>
+        Berinteraksi dengan orang yang mendukung dapat meningkatkan kesejahteraan emosional.</p>
+        <p><strong>4. Luangkan waktu untuk diri sendiri.</strong>
+        Melakukan hobi atau aktivitas yang disukai dapat membantu mengurangi stres.</p>
+        <p><strong>5. Jangan ragu untuk mencari bantuan profesional.</strong>
+        Jika merasa kewalahan, berbicara dengan psikolog atau konselor dapat sangat membantu.</p>
+        `
     }
 };
 // KLIK TOMBOL PELAJARI
