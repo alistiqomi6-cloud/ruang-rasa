@@ -350,55 +350,87 @@ journalForm.addEventListener("submit", function(event) {
     journalFeedback.textContent =
         "Jurnal berhasil disimpan!";
 });
-const breathingCircle=document.querySelector("#breathingCircle");
-const breathingText=document.querySelector("#breathingText");
-const breathingInstruction=document.querySelector("#breathingInstruction");
-const breathingButton=document.querySelector("#breathingButton");
-let breathingInterval=null;
-let breathingPhase=0;
-let isBreathing=false;
-const breathingSteps=[
+
+const breathingCircle = document.querySelector("#breathingCircle");
+const breathingText = document.querySelector("#breathingText");
+const breathingInstruction = document.querySelector("#breathingInstruction");
+const breathingButton = document.querySelector("#breathingButton");
+const breathingPhases = [
     {
-        text:"tarik napas",
-        instruction:"tarik napas perlahan...",
-        className:"inhale",
-        duration:4000
+        name: "Tarik Napas",
+        instruction: "Tarik napas perlahan...",
+        duration: 4,
+        className: "inhale"
     },
     {
-        text:"hembuskan",
-        instruction:"hembuskan napas perlahan...",
-        className:"exhale",
-        duration:8000
+        name: "Tahan Napas",
+        instruction: "Tahan dengan nyaman...",
+        duration: 7,
+        className: "hold"
+    },
+    {
+        name: "Hembuskan Napas",
+        instruction: "Hembuskan napas perlahan...",
+        duration: 8,
+        className: "exhale"
     }
 ];
-function runBreathing(){
-    const step=breathingSteps[breathingPhase];
-    breathingCircle.classList.remove("inhale","exhale");
-    void breathingCircle.offsetWidth;
-    breathingCircle.classList.add(step.className);
-    breathingText.textContent=step.text;
-    breathingInstruction.textContent=step.instruction;
-    breathingPhase=(breathingPhase+1)%breathingSteps.length;
-    breathingInterval=setTimeout(
-        runBreathing,
-        step.duration
+let breathingTimer = null;
+let currentPhase = 0;
+let remainingTime = 0;
+let isBreathing = false;
+function showBreathingPhase() {
+    const phase = breathingPhases[currentPhase];
+    remainingTime = phase.duration;
+    breathingCircle.classList.remove(
+        "inhale", "hold", "exhale"
     );
+    // Memastikan animasi tahap sebelumnya selesai diterapkan
+    void breathingCircle.offsetWidth;
+    breathingCircle.classList.add(phase.className);
+    breathingText.textContent = remainingTime;
+    breathingInstruction.textContent = phase.instruction;
 }
-breathingButton.addEventListener("click",function(){
-    if(!isBreathing){
-        isBreathing=true;
-        breathingPhase=0;
-        breathingButton.textContent="berhenti";
-        runBreathing();
-    }else{
-        clearTimeout(breathingInterval);
-        isBreathing=false;
-        breathingCircle.classList.remove("inhale","exhale");
-        breathingText.textContent="ready?";
-        breathingInstruction.textContent="kamu bisa beristirahat sejenak";
-        breathingButton.textContent="mulai";
+function startBreathing() {
+    if (isBreathing) return;
+    isBreathing = true;
+    currentPhase = 0;
+    breathingButton.textContent = "Berhenti";
+    showBreathingPhase();
+    breathingTimer = setInterval(function() {
+        remainingTime--;
+        if (remainingTime > 0) {
+            breathingText.textContent = remainingTime;
+        } else {
+            currentPhase++;
+            if (currentPhase >= breathingPhases.length) {
+                currentPhase = 0;
+            }
+            showBreathingPhase();
+        }
+    }, 1000);
+}
+function stopBreathing() {
+    clearInterval(breathingTimer);
+    breathingTimer = null;
+    isBreathing = false;
+    currentPhase = 0;
+    remainingTime = 0;
+    breathingCircle.classList.remove(
+        "inhale", "hold", "exhale"
+    );
+    breathingText.textContent = "Ready?";
+    breathingInstruction.textContent = "Siap untuk memulai?";
+    breathingButton.textContent = "Mulai";
+}
+breathingButton.addEventListener("click", function() {
+    if (isBreathing) {
+        stopBreathing();
+    } else {
+        startBreathing();
     }
 });
+
 const educationButtons = document.querySelectorAll(
     "[data-education]"
 );
@@ -585,46 +617,27 @@ document.addEventListener("click", function(event) {
         );
     }
 });
-/* ==============================
-   NAVBAR ACTIVE ON SCROLL
-============================== */
-const pageSections = document.querySelectorAll(
-    "#homepage, #mood-history, #journal, #mood-check, #ruang-tenang, #edukasi"
+// NAVBAR ACTIVE SECTION
+const sections = document.querySelectorAll(
+    "main section[id]"
 );
-const pageNavLinks = document.querySelectorAll(
+const navItems = document.querySelectorAll(
     ".nav-links a"
 );
-// MENGUBAH MENU AKTIF
-function updateActiveNavigation() {
+function updateActiveNav() {
     let currentSection = "";
-    pageSections.forEach(function(section) {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const scrollPosition = window.scrollY + 150;
-        if (
-            scrollPosition >= sectionTop &&
-            scrollPosition < sectionTop + sectionHeight
-        ) {
-            currentSection = section.id;
+    sections.forEach(function(section) {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop <= window.innerHeight * 0.4) {
+            currentSection = section.getAttribute("id");
         }
     });
-    // MEMBERIKAN CLASS ACTIVE
-    pageNavLinks.forEach(function(link) {
+    navItems.forEach(function(link) {
         link.classList.remove("active");
-        if (
-            link.getAttribute("href") === "#" + currentSection
-        ) {
+        if (link.getAttribute("href") === `#${currentSection}`) {
             link.classList.add("active");
         }
     });
 }
-// JALANKAN KETIKA SCROLL
-window.addEventListener(
-    "scroll",
-    updateActiveNavigation
-);
-// JALANKAN SAAT HALAMAN DIBUKA
-window.addEventListener(
-    "load",
-    updateActiveNavigation
-);
+window.addEventListener("scroll", updateActiveNav);
+window.addEventListener("load", updateActiveNav);

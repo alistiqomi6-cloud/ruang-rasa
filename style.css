@@ -353,10 +353,13 @@ body{
     font-size:20px;
 }
 #mood-history{
-    padding:130px;
+    padding-bottom:400px;
     border-radius:30px;
     text-align:center;
-    height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 #mood-history h2{
     font-family:"chillax",serif;
@@ -548,7 +551,7 @@ body{
     transform:translateY(-1px);
 }
 #journal{
-    height:90vh;
+    height:400px;
     text-align:center;
 }
 .journal-list{
@@ -815,58 +818,43 @@ body{
     font-size:13px;
     line-height:1.7;
 }
-.breathing-circle{
-    width:180px;
-    height:180px;
-    margin:40px auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:radial-gradient(
+.breathing-circle {
+    width: 180px;
+    height: 180px;
+    margin: 35px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(
         circle,
-        rgba(216, 197, 240, 0.35),
-        rgba(169, 139, 212, 0.12),
-        transparent 75%
+        #D8C5F0,
+        #A98BD4,
+        #392451
     );
-    border:1px solid rgba(216, 197, 240, 0.5);
+    transform: scale(1);
+    transition: transform 0.3s ease;
     box-shadow:
-    0 0 30px rgba(169, 139, 212, 0.2),
-    inset 0 0 30px rgba(169, 139, 212, 0.15);
+        0 0 25px rgba(169,139,212,0.4),
+        0 0 60px rgba(169,139,212,0.2);
 }
 .breathing-inner{
-    width:125px;
-    height:125px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:rgba(169, 139, 212, 0.18);
-    color:#F5EFFB;
     font-family:"chillax",serif;
-    font-size:14px;
+    font-size:30px;
+    font-weight:600;
+    letter-spacing:1px;
 }
-.breathing-circle.inhale{
-    animation:breatheIn 4s ease-in-out forwards;
+.breathing-circle.inhale {
+    transform: scale(1.3);
+    transition-duration: 4s;
 }
-.breathing-circle.exhale{
-    animation:breatheOut 4s ease-in-out forwards;
+.breathing-circle.hold {
+    transform: scale(1.3);
+    transition-duration: 0.3s;
 }
-@keyframes  breatheIn {
-    from{
-        transform:scale(0.75);
-    }
-    to{
-        transform:scale(1.15);
-    }
-}
-@keyframes breathOut{
-    from{
-        transform:scale(1.15);
-    }
-    to{
-        transform:scale(0.75);
-    }
+.breathing-circle.exhale {
+    transform: scale(1);
+    transition-duration: 8s;
 }
 .breathingInstruction{
     color:#D8C5F0;
@@ -894,6 +882,7 @@ body{
     }
     .calm-intro p{
         margin:auto;
+        text-align:center;
     }
     .breathing-card{
         padding:25px 15px;
