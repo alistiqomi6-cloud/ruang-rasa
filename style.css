@@ -369,30 +369,77 @@ body{
     text-align: center;
     line-height: 1.6;
 }
-#mood-history{
-    padding-bottom:400px;
-    border-radius:30px;
-    text-align:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+#mood-history {
+    width: 100%;
+    min-height: 90vh;
+    height: auto;
+    padding: 110px 5% 70px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
 }
-#mood-history h2{
-    font-family:"chillax",serif;
-    font-weight:bold;
-    font-size:35px;
-    color:rgb(249, 241, 255);
-    letter-spacing: 2px;
+#mood-history h2 {
+    font-family: "chillax", serif;
+    font-weight: bold;
+    font-size: clamp(25px, 4vw, 35px);
+    color: rgb(249, 241, 255);
+    letter-spacing: clamp(1px, 0.3vw, 2px);
+    margin-bottom: 12px;
 }
-.bv{
-    font-family:"gambarino",serif;
-    letter-spacing:1px;
-    font-weight:300;
-    color:white;
+.bv {
+    font-family: "gambarino", serif;
+    font-size: clamp(13px, 2vw, 17px);
+    letter-spacing: 1px;
+    font-weight: 300;
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 100%;
 }
-.content-panel{
-    color:#81769a;
+.content-panel {
+    width: min(850px, 100%);
+    min-height: 100px;
+    height: auto;
+    padding: 25px;
+    box-sizing: border-box;
+    color: #81769a;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(216, 197, 240, 0.18);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+/* TABLET */
+@media (max-width: 768px) {
+    #mood-history {
+        padding: 100px 5% 60px;
+    }
+    .content-panel {
+        padding: 20px;
+    }
+}
+/* HP */
+@media (max-width: 480px) {
+    #mood-history {
+        padding: 90px 18px 50px;
+    }
+    #mood-history h2 {
+        font-size: 25px;
+    }
+    .bv {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    .content-panel {
+        width: 100%;
+        padding: 18px 14px;
+        border-radius: 16px;
+    }
 }
 .mood-history-item{
     margin:12px 0;
